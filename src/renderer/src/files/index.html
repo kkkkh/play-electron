@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: #2b947a;
+      }
+      ul {
+        list-style: none;
+      }
+      li{
+        line-height: 20px;
+      }
+      h4 {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <h4>webview 内嵌内容</h4>
+    <ul>
+      <li>
+        <h4>localStorage</h4>
+        <div id="localStorage"></div>
+        <button id="btn">localStorage set</button>
+      </li>
+      <li>
+        <h4>isInElectron</h4>
+        <div id="isInElectron"></div>
+      </li>
+      <li>
+        <h4>调用 preload 中的 ping</h4>
+        <div id="pong"></div>
+        <button id="ping">ping</button>
+      </li>
+    </ul>
+    <script>
+      // 缓存
+      const getLocalStorage = () => {
+        const test = document.getElementById('localStorage')
+        test.innerHTML = `localStorage.getItem test：${localStorage.getItem('test')}`
+      }
+      getLocalStorage()
+      const btn = document.getElementById('btn')
+      btn.addEventListener('click', () => {
+        localStorage.setItem('test', '123')
+        getLocalStorage()
+      })
+    </script>
+    <script>
+      const isInElectron = document.getElementById('isInElectron')
+      isInElectron.innerHTML = window.IS_IN_ELECTRON ? '在electron中' : '没有在electron中'
+    </script>
+    <script>
+      const ping = document.getElementById('ping')
+      ping.addEventListener('click', () => {
+        const res = window.electron.ipcRenderer.send('ping')
+        const pong = document.getElementById('pong')
+        pong.innerHTML = `pong: ${res}`
+      })
+    </script>
+  </body>
+</html>
