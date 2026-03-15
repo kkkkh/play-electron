@@ -13,6 +13,7 @@
       </li>
       <li>
         webview页面
+        <!-- #region webviewRef -->
         <webview
           ref="webviewRef"
           style="width: 600px; height: 300px; margin: 10px 0 0 10px"
@@ -21,11 +22,9 @@
           disablewebsecurity
           :preload="preloadPath"
         />
+        <!-- #endregion webviewRef -->
       </li>
     </ul>
-    <!-- // #regin webviewRef -->
-
-    <!-- // #endregin webviewRef -->
   </div>
 </template>
 <script lang="ts" setup>
