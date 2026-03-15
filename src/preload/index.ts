@@ -10,6 +10,7 @@ const electronAPI = {
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
 if (process.contextIsolated) {
+  console.log('process.contextIsolated')
   try {
     contextBridge.exposeInMainWorld('electron', electron)
     contextBridge.exposeInMainWorld('electronAPI', electronAPI)

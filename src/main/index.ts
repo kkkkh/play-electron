@@ -2,10 +2,10 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { ipcMainHandle } from './ipc/handle/index'
-import { ipcMainOn } from './ipc/on/index'
+import { ipcMainHandle } from './icp/handle/index'
+import { icpMainOn } from './icp/on/index'
 import { registerShortcuts, unregisterShortcuts } from './shortcut'
-import { registerMainIpc, unregisterMainIpc } from './ipc'
+import { registerMainIpc, unregisterMainIpc } from './icp'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -54,13 +54,16 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
-
+  // 创建浏览器窗口
   createWindow()
+  // ipcMain.on：模块注册（更通用方案）
   registerMainIpc()
+  // ipcMain.on：直接绑定
+  icpMainOn()
+  // ipcMain.handle：直接绑定
   ipcMainHandle()
-  ipcMainOn()
+  //
   registerShortcuts()
-
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
