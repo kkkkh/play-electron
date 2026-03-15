@@ -60,10 +60,12 @@
       isInElectron.innerHTML = window.IS_IN_ELECTRON ? '是（在electron中）' : '否（没有在electron中）'
     </script>
     <script>
+      // #region ipcRenderer
       const ping = document.getElementById('ping')
       ping.addEventListener('click', () => {
         window.electron.ipcRenderer.send('ping')
       })
+      // #endregion ipcRenderer
     </script>
   </body>
 </html>
