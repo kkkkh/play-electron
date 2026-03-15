@@ -7,7 +7,7 @@ import { ipcMainOn } from './ipc/on/index'
 import { registerShortcuts, unregisterShortcuts } from './shortcut'
 import { registerMainIpc, unregisterMainIpc } from './ipc'
 function createWindow(): void {
-  // Create the browser window.
+  // #region main-BrowserWindow
   const mainWindow = new BrowserWindow({
     width: 900,
     height: 670,
@@ -22,6 +22,7 @@ function createWindow(): void {
       nodeIntegration: false
     }
   })
+  // #endregion main-BrowserWindow
   console.log('preload', join(__dirname, '../preload/index.js'))
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
