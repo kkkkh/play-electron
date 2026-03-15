@@ -2,10 +2,10 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
-import { ipcMainHandle } from './icp/handle/index'
-import { icpMainOn } from './icp/on/index'
+import { ipcMainHandle } from './ipc/handle/index'
+import { ipcMainOn } from './ipc/on/index'
 import { registerShortcuts, unregisterShortcuts } from './shortcut'
-import { registerMainIpc, unregisterMainIpc } from './icp'
+import { registerMainIpc, unregisterMainIpc } from './ipc'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -58,7 +58,7 @@ app.whenReady().then(() => {
   createWindow()
   registerMainIpc()
   ipcMainHandle()
-  icpMainOn()
+  ipcMainOn()
   registerShortcuts()
 
   app.on('activate', function () {
