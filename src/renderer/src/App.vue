@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 
-const modules = import.meta.glob(['./components/*.vue'], {
+const modules = import.meta.glob(['./components/**/*.vue'], {
   eager: true,
   import: 'default'
 }) as Record<string, Component>

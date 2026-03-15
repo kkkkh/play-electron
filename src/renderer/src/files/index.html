@@ -24,17 +24,17 @@
     <h4>webview 内嵌内容</h4>
     <ul>
       <li>
-        <h4>localStorage</h4>
-        <div id="localStorage"></div>
-        <button id="btn">localStorage set</button>
+        <span>localStorage：</span>
+        <span id="localStorage"></span>
+        <button id="getItem" >localStorage get</button>
+        <button id="setItem">localStorage set</button>
       </li>
       <li>
-        <h4>isInElectron</h4>
-        <div id="isInElectron"></div>
+        <span>isInElectron：</span>
+        <span id="isInElectron"></span>
       </li>
       <li>
-        <h4>调用 preload 中的 ping</h4>
-        <div id="pong"></div>
+        <span>调用 preload 中的 ping：</span>
         <button id="ping">ping</button>
       </li>
     </ul>
@@ -42,25 +42,27 @@
       // 缓存
       const getLocalStorage = () => {
         const test = document.getElementById('localStorage')
-        test.innerHTML = `localStorage.getItem test：${localStorage.getItem('test')}`
+        test.innerHTML = `${localStorage.getItem('test')}`
       }
       getLocalStorage()
-      const btn = document.getElementById('btn')
-      btn.addEventListener('click', () => {
+      const getItem = document.getElementById('getItem')
+      getItem.addEventListener('click', () => {
+        getLocalStorage()
+      })
+      const setItem = document.getElementById('setItem')
+      setItem.addEventListener('click', () => {
         localStorage.setItem('test', '123')
         getLocalStorage()
       })
     </script>
     <script>
       const isInElectron = document.getElementById('isInElectron')
-      isInElectron.innerHTML = window.IS_IN_ELECTRON ? '在electron中' : '没有在electron中'
+      isInElectron.innerHTML = window.IS_IN_ELECTRON ? '是（在electron中）' : '否（没有在electron中）'
     </script>
     <script>
       const ping = document.getElementById('ping')
       ping.addEventListener('click', () => {
-        const res = window.electron.ipcRenderer.send('ping')
-        const pong = document.getElementById('pong')
-        pong.innerHTML = `pong: ${res}`
+        window.electron.ipcRenderer.send('ping')
       })
     </script>
   </body>
