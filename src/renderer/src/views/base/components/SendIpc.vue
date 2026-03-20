@@ -1,6 +1,11 @@
 <template>
   <button @click="ipcHandle">Send IPC</button>
 </template>
+<script lang="ts">
+export const meta = {
+  sort: 2
+}
+</script>
 <script lang="ts" setup>
 defineOptions({
   name: 'SendIpc'

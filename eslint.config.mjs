@@ -2,6 +2,7 @@ import tseslint from '@electron-toolkit/eslint-config-ts'
 import eslintConfigPrettier from '@electron-toolkit/eslint-config-prettier'
 import eslintPluginVue from 'eslint-plugin-vue'
 import vueParser from 'vue-eslint-parser'
+import importPlugin from 'eslint-plugin-import'
 
 export default tseslint.config(
   { ignores: ['**/node_modules', '**/dist', '**/out'] },
@@ -33,6 +34,16 @@ export default tseslint.config(
           }
         }
       ]
+    }
+  },
+  {
+    files: ['**/*.{js,cjs,mjs,jsx}'],
+    plugins: {
+      import: importPlugin
+    },
+    rules: {
+      'import/no-unresolved': 'error',
+      '@typescript-eslint/explicit-function-return-type': 'off'
     }
   },
   eslintConfigPrettier

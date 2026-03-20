@@ -1,8 +1,15 @@
+<script lang="ts">
+export const meta = {
+  sort: 1
+}
+</script>
 <script setup lang="ts">
 import { reactive } from 'vue'
 defineOptions({
-  name: 'Versions'
+  name: 'Versions',
+  sort: 2
 })
+
 const versions = reactive({ ...window.electron.process.versions })
 </script>
 

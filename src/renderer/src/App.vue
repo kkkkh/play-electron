@@ -1,33 +1,42 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
-
-const modules = import.meta.glob(['./components/**/*.vue'], {
-  eager: true,
-  import: 'default'
-}) as Record<string, Component>
-
-const components = Object.values(modules).map((value: Component) => {
-  return {
-    name: value?.name,
-    component: value
-  }
-})
-console.log('components', components)
+import { routes } from './router'
 </script>
 
 <template>
-  <!-- <ul>
-    <li>electron</li> -->
-  <ul>
-    <li v-for="component in components" :key="component.name">
-      <span>{{ component.name }} :</span>
-      <component :is="component.component" />
-    </li>
-  </ul>
-  <!-- </ul> -->
+  <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
+  <div class="app">
+    <nav>
+      <RouterLink
+        v-for="(route, index) in routes"
+        :key="index"
+        :class="{ 'router-current': $route.path === route.path }"
+        :to="route.path"
+        >{{ route.component.name }}</RouterLink
+      >
+    </nav>
+    <main>
+      <RouterView />
+    </main>
+  </div>
 </template>
-<style scoped>
-ul div {
-  margin-left: 30px;
+<style scoped lang="scss">
+.app {
+  display: flex;
+}
+nav {
+  width: 100px;
+  a {
+    text-decoration: none;
+    display: block;
+    background: #323232;
+    color: white;
+    padding: 4px;
+    &:hover {
+      background: #646464;
+    }
+  }
+  .router-current {
+    background: #646464;
+  }
 }
 </style>

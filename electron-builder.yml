@@ -26,6 +26,7 @@ mac:
     - NSDocumentsFolderUsageDescription: Application requests access to the user's Documents folder.
     - NSDownloadsFolderUsageDescription: Application requests access to the user's Downloads folder.
   notarize: false
+asar: false
 dmg:
   artifactName: ${name}-${version}.${ext}
 linux:
@@ -43,3 +44,4 @@ publish:
   url: https://example.com/auto-updates
 electronDownload:
   mirror: https://npmmirror.com/mirrors/electron/
+afterAllArtifactBuild: build/afterAllArtifactBuild.mjs

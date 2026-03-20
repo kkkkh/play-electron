@@ -13,20 +13,28 @@
       </li>
       <li>
         webview页面
-        <!-- #region webviewRef -->
         <webview
           ref="webviewRef"
           style="width: 600px; height: 300px; margin: 10px 0 0 10px"
           partition="persist:webview"
-          src="http://127.0.0.1:5500/src/renderer/src/files/index.html"
+          src="http://127.0.0.1:5500/src/renderer/src/views/webview/index.html"
           disablewebsecurity
           :preload="preloadPath"
         />
-        <!-- #endregion webviewRef -->
       </li>
     </ul>
+    <!-- // #regin webviewRef -->
+
+    <!-- // #endregin webviewRef -->
   </div>
 </template>
+
+<script lang="ts">
+export const meta = {
+  sort: 3
+}
+</script>
+
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import type { WebviewTag } from 'electron'

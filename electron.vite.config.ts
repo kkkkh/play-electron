@@ -49,7 +49,7 @@ export default defineConfig({
       }
     },
     plugins: [
-    // #region vite-webview
+      // #region vite-webview
       vue({
         template: {
           compilerOptions: {
@@ -58,7 +58,7 @@ export default defineConfig({
           }
         }
       })
-    // #endregion vite-webview
+      // #endregion vite-webview
     ]
   }
 })
