@@ -15,6 +15,13 @@
       "@electron/*": [
         "src/electron/*"
       ]
-    }
+    },
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ESNext",
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "verbatimModuleSyntax": true,
+    "experimentalDecorators": true,
   },
 }

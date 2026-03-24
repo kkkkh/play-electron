@@ -1,5 +1,5 @@
 <template>
-  <button @click="updateHandle">Update</button>
+  <button @click="updateHandle">Update test</button>
 </template>
 
 <script lang="ts">
@@ -14,7 +14,7 @@ defineOptions({
 })
 
 const updateHandle = (): void => {
-  return
+  window.electron.ipcRenderer.send('update')
 }
 </script>
 <style lang="scss" scoped></style>

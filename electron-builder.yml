@@ -9,8 +9,11 @@ files:
   - '!{.eslintcache,eslint.config.mjs,.prettierignore,.prettierrc.yaml,dev-app-update.yml,CHANGELOG.md,README.md}'
   - '!{.env,.env.*,.npmrc,pnpm-lock.yaml}'
   - '!{tsconfig.json,tsconfig.node.json,tsconfig.web.json}'
+extraResources:
+  - 'raw/' # 额外放入resources的文件
 asarUnpack:
-  - resources/**
+  - resources/** # 不打包到asar文件
+  - 'raw/**/*'
 win:
   executableName: electron
 nsis:

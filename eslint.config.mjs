@@ -22,10 +22,14 @@ export default tseslint.config(
     }
   },
   {
-    files: ['**/*.{ts,mts,tsx,vue}'],
+    files: ['**/*.{ts,mts,tsx,vue,mjs,cjs,js}'],
+    plugins: {
+      import: importPlugin
+    },
     rules: {
       'vue/require-default-prop': 'off',
       'vue/multi-word-component-names': 'off',
+      '@typescript-eslint/explicit-function-return-type': 'off',
       'vue/block-lang': [
         'error',
         {
@@ -33,17 +37,15 @@ export default tseslint.config(
             lang: 'ts'
           }
         }
+      ],
+      'import/no-extraneous-dependencies': [
+        'error',
+        {
+          devDependencies: true,
+          optionalDependencies: true,
+          peerDependencies: true
+        }
       ]
-    }
-  },
-  {
-    files: ['**/*.{js,cjs,mjs,jsx}'],
-    plugins: {
-      import: importPlugin
-    },
-    rules: {
-      'import/no-unresolved': 'error',
-      '@typescript-eslint/explicit-function-return-type': 'off'
     }
   },
   eslintConfigPrettier
