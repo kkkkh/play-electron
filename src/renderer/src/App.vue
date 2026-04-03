@@ -1,9 +1,5 @@
-<script setup lang="ts">
-import { routes } from './router'
-</script>
-
 <template>
-  <p><strong>Current route path:</strong> {{ $route.fullPath }}</p>
+  <p><strong>route path:</strong>{{ $route.fullPath }}</p>
   <div class="app">
     <nav>
       <RouterLink
@@ -19,9 +15,19 @@ import { routes } from './router'
     </main>
   </div>
 </template>
+<script lang="ts" setup>
+import { routes } from './router'
+
+defineOptions({
+  name: 'App'
+})
+</script>
 <style scoped lang="scss">
 .app {
   display: flex;
+}
+main {
+  margin-left: 8px;
 }
 nav {
   width: 100px;

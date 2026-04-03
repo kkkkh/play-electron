@@ -20,7 +20,7 @@ function getAppVersion(isExeFile) {
   }
 
   if (isExeFile) {
-    return `${version}-exe`
+    return `${version}-all`
   }
 
   return version

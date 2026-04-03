@@ -47,3 +47,32 @@ export async function copyFileStream(sourceFile: string, targetDir: string) {
     console.log(`File copied successfully: ${sourceFile} -> ${targetFile}`)
   })
 }
+
+export async function cleanFiles(targetDirectory: string) {
+  try {
+    if (!fs.existsSync(targetDirectory)) {
+      return
+    }
+
+    const files = await fs.promises.readdir(targetDirectory)
+
+    if (files.length === 0) {
+      return
+    }
+
+    const deletePromises = files.map(async (file) => {
+      const filePath = path.join(targetDirectory, file)
+
+      const stats = await fs.promises.stat(filePath)
+
+      if (stats.isFile()) {
+        await fs.promises.unlink(filePath)
+      }
+    })
+
+    // 使用 Promise.all 来并行执行所有文件删除操作
+    await Promise.all(deletePromises)
+  } catch (err) {
+    console.error(err)
+  }
+}

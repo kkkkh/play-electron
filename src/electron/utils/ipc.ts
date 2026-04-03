@@ -1,4 +1,4 @@
-import { ipcMain, ipcRenderer, type IpcMainEvent } from 'electron'
+import { ipcMain, ipcRenderer, type IpcMainEvent, type IpcRendererEvent } from 'electron'
 
 export function mainOnSync<T = void>(
   channel: string,
@@ -26,4 +26,13 @@ export function rendererSendSync<T = void>(channel: string, ...args: unknown[]):
   }
 
   return res.data as T
+}
+
+export function rendererOn<T = void>(
+  channel: string,
+  listener: (event: IpcRendererEvent, data: T) => void
+): UnsubscribeFn {
+  ipcRenderer.on(channel, listener)
+
+  return () => ipcRenderer.off(channel, listener)
 }
