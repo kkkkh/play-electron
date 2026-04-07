@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- // #regin webviewRef -->
     <ul>
       <li>
         两种方式清除 localStorage
@@ -23,8 +24,6 @@
         />
       </li>
     </ul>
-    <!-- // #regin webviewRef -->
-
     <!-- // #endregin webviewRef -->
   </div>
 </template>
